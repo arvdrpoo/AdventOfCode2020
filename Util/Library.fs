@@ -4,7 +4,7 @@ module Base =
     open System.IO
 
     let parse parseLine (input:string)=
-        input.Split("\r\n")
+        input.Split([|"\n\r"|],System.StringSplitOptions.RemoveEmptyEntries)
         |> Array.map parseLine
 
     let readLines (filePath:string) = seq{

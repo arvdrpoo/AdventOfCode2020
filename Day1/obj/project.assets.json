@@ -51,6 +51,19 @@
             "locale": "zh-Hant"
           }
         }
+      },
+      "Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FSharp.Core": "4.7.2"
+        },
+        "compile": {
+          "bin/placeholder/Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Util.dll": {}
+        }
       }
     }
   },
@@ -100,11 +113,17 @@
         "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
         "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll"
       ]
+    },
+    "Util/1.0.0": {
+      "type": "project",
+      "path": "../Util/Util.fsproj",
+      "msbuildProject": "../Util/Util.fsproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "FSharp.Core >= 4.7.2"
+      "FSharp.Core >= 4.7.2",
+      "Util >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -132,7 +151,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ArnaudVanderPoorten\\source\\repos\\AdventOfCode2020\\Util\\Util.fsproj": {
+              "projectPath": "C:\\Users\\ArnaudVanderPoorten\\source\\repos\\AdventOfCode2020\\Util\\Util.fsproj"
+            }
+          }
         }
       }
     },
