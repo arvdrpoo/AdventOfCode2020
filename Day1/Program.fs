@@ -48,7 +48,7 @@ let mult3Tuple t =
 let main argv =
     let stopwatch = System.Diagnostics.Stopwatch.StartNew()
     let input = Util.Base.readLines "bigInput.txt"
-                |> Seq.map (fun a -> a() |> int)
+                |> Seq.map int
                 |> Seq.toList
     let target = 2020
 

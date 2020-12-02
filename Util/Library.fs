@@ -10,7 +10,7 @@ module Base =
     let readLines (filePath:string) = seq{
         use sr = new StreamReader (filePath)
         while not sr.EndOfStream do
-            yield sr.ReadLine
+            yield sr.ReadLine()
     }
 
 module Say =
