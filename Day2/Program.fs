@@ -17,12 +17,21 @@ let isValidLine line =
                    |> Array.filter (fun c -> c = line.policy.character)
     matching.Length >= line.policy.min && matching.Length <= line.policy.max
 
+let isValidLine2 line =
+    let passwArr = line.password.ToCharArray()
+    let min = passwArr.[line.policy.min-1]
+    let max = passwArr.[line.policy.max-1]
+    (min = line.policy.character || max = line.policy.character) && max <> min
+
 [<EntryPoint>]
 let main argv =
+    let stopwatch = System.Diagnostics.Stopwatch.StartNew()
     let input = Util.Base.readLines "bigInput.txt"
                 |> Seq.map parseLine
 
-    let stopwatch = System.Diagnostics.Stopwatch.StartNew()
+    stopwatch.Stop()
+    printfn "Reading and parsing input took %i ms" stopwatch.ElapsedMilliseconds
+    stopwatch.Restart()
     let validLines = input
                     |> Seq.filter isValidLine
                     |> Seq.toList
@@ -31,4 +40,12 @@ let main argv =
     stopwatch.Stop()
     printfn "Calculation took %i ms" stopwatch.ElapsedMilliseconds
     stopwatch.Restart()
+
+    let validLines2 = input
+                    |> Seq.filter isValidLine2
+                    |> Seq.toList
+
+    printfn "The number of valid lines is %i" validLines2.Length
+    stopwatch.Stop()
+    printfn "Calculation took %i ms" stopwatch.ElapsedMilliseconds
     0 // return an integer exit code
