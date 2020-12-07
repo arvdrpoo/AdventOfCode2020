@@ -25,15 +25,15 @@ let folder (prev_state:State) (field: (int * Square[])) =
 
 let treeCount input slope =
     input
-    |> Array.indexed
-    |> Array.fold folder {curr_x=(-slope.right);curr_y=(-slope.down);trees=0;slope=slope}
+    |> Seq.indexed
+    |> Seq.fold folder {curr_x=(-slope.right);curr_y=(-slope.down);trees=0;slope=slope}
 
 [<EntryPoint>]
 let main argv =
     let stopwatch = System.Diagnostics.Stopwatch.StartNew()
     let input = Util.Base.readLines "bigInput.txt"
                 |> Seq.map (fun l -> l.ToCharArray() |> Array.map parseSquare)
-                |> Seq.toArray
+                //|> Seq.toArray
 
     stopwatch.Stop()
     printfn "Reading and parsing input took %i ms" stopwatch.ElapsedMilliseconds

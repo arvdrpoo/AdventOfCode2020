@@ -3,8 +3,8 @@
 module Base =
     open System.IO
 
-    let parse parseLine (input:string)=
-        input.Split([|"\n\r"|],System.StringSplitOptions.RemoveEmptyEntries)
+    let parse parseLine (splitString:string) (input:string)=
+        input.Split([|splitString|],System.StringSplitOptions.RemoveEmptyEntries)
         |> Array.map parseLine
 
     let readLines (filePath:string) = seq{
@@ -12,6 +12,10 @@ module Base =
         while not sr.EndOfStream do
             yield sr.ReadLine()
     }
+
+    let readAll (filePath:string) =
+        use sr = new StreamReader (filePath)
+        sr.ReadToEnd()
 
 module Say =
     let hello name =
